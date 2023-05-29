@@ -19,6 +19,14 @@ public class EnemyBase : MonoBehaviour
     // 시작부터 경과시간
     float timeElapsed = 0.0f;
 
+    GameObject explosionEffect;
+    
+    private void Awake()
+    {
+        explosionEffect = GetComponentInChildren<Explosion>(true).gameObject;
+
+    }
+
     private void Start()
     {
         spawnY = transform.position.y;      // 시작 높이 저장하기
@@ -49,6 +57,7 @@ public class EnemyBase : MonoBehaviour
             0);
     }
 
+<<<<<<< Updated upstream
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
     //    //if(collision.tag == "KillZone")       <= 아주 안좋은 방법
@@ -58,4 +67,40 @@ public class EnemyBase : MonoBehaviour
     //        Destroy(this.gameObject);           // 자기 자신의 게임 오브젝트를 죽이기
     //    }
     //}
+=======
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet")) 
+        {
+            Die();
+             
+        }
+        //콜라이더는 충돌을 확인하기 위함 트리거는 영역 안에 들어왔는지 확인 
+        //트리거는 단순히 접촉? 
+
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+    }
+    /*void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        //if (collision.tag) == "KillZone) <= 아주 안좋은 방법
+
+        if (collision.CompareTag("KillZone")) // 부딪친 상대의 태그가 KillZone일 떄만
+        {
+            Destroy(this.gameObject); //자기 자신의 게임 오브젝트를 죽이기 
+        }
+    }*/
+
+    //총아리 사라지게 만들기 
+    //1. 킬존에 닿았을때 
+    //2. 적에게 닿았을 떄 
+    //3. 생성 후 10초가 지났을 때 
+
+>>>>>>> Stashed changes
 }
